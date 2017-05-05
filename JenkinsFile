@@ -8,7 +8,7 @@ node {
     stage ('Dependencies-Build'){
     git([
       //url: "https://github.com/venicegeo/geopackage-core-java.git",
-       url: "https://github.com/ngageoint/geopackage-core-java.git"
+       url: "https://github.com/ngageoint/geopackage-core-java.git",
       branch: "master"
       ])
      
