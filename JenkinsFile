@@ -12,8 +12,8 @@ node {
     stage ('git clone'){
    git([
       url: "https://github.com/ngageoint/geopackage-core-java.git",
-      url: "https://github.com/ngageoint/geopackage-java.git",
-      url: "https://github.com/ngageoint/geopackage-wkb-java.git",
+      //url: "https://github.com/ngageoint/geopackage-java.git",
+      //url: "https://github.com/ngageoint/geopackage-wkb-java.git",
       branch: "master"
       ])
     }
