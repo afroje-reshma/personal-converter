@@ -5,37 +5,26 @@ node {
     checkout scm
    
     stage("Build geopackage") {                                                               
-     
       git url: "https://github.com/ngageoint/geopackage-java.git"                  
-        
-       withEnv(["PATH+MAVEN=${tool "M3"}/bin"]) {                                 
-          
-        sh "mvn clean install -DskipTests"                                       
-      
-       }                                                                          
+         withEnv(["PATH+MAVEN=${tool "M3"}/bin"]) {                                 
+          sh "mvn clean install -DskipTests" 
+          sh "mvn clean package"
+      }                                                                          
+    }                                                                              
     
-  }                                                                              
     stage("Build geopackage-wkb") {                                                
-     
       git url: "https://github.com/venicegeo/geopackage-wkb-java.git"              
-        
-       withEnv(["PATH+MAVEN=${tool "M3"}/bin"]) {                                 
-         
-        sh "mvn clean install -DskipTests"                                       
-     
-       }                                                                          
-    
-  }                                                                              
+         withEnv(["PATH+MAVEN=${tool "M3"}/bin"]) {                                 
+          sh "mvn clean install" 
+          sh "mvn clean package"
+     }                                                                          
+   }                                                                              
                                                                                    
-    
-     stage("Build geopackage-core") {                                               
-     
+    stage("Build geopackage-core") {                                               
       git url: "https://github.com/venicegeo/geopackage-core-java.git"             
-       
-       withEnv(["PATH+MAVEN=${tool "M3"}/bin"]) {                                 
-         
-        sh "mvn clean install -DskipTests"                                       
-       
+        withEnv(["PATH+MAVEN=${tool "M3"}/bin"]) {                                 
+         sh "mvn clean install"                                       
+         sh "mvn clean package" 
       }                                                                          
   
   }       
