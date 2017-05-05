@@ -3,14 +3,10 @@ node {
     
     stage('Setup')
     checkout scm
-   //git([
-    //  url: "https://github.com/afroje-reshma/personal-converter",
-     // branch: "master"
-   // ])
-  //}
+   
     
-    stage ('Dependencies'){
-   git([
+    stage ('Dependencies-Build'){
+    git([
       url: "https://github.com/ngageoint/geopackage-core-java.git",
       branch: "master"
       ])
@@ -25,17 +21,14 @@ node {
       //branch: "master"
       //])
        
-   git([
-      url: "https://github.com/ngageoint/geopackage-java.git",
-      branch: "master"
-      ])
-    }
+      // git([
+      // url: "https://github.com/ngageoint/geopackage-java.git",
+     // branch: "master"
+     // ])
     
-    withEnv(["PATH+MAVEN=${tool 'M3'}/bin"]){
-    stage('Archive') {
-    sh 'mvn clean install -DskipTests' 
- 
-    }
+    
+    
+   
   }
 }
 
