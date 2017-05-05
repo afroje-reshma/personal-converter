@@ -26,6 +26,7 @@ node {
     withEnv(["PATH+MAVEN=${tool 'M3'}/bin"]){
     stage('Archive') {
     sh 'mvn clean install -DskipTests' 
+    sh 'mvn clean package'
     }
   }
 }
