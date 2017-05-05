@@ -9,8 +9,11 @@ node {
    // ])
   //}
     
-    stage ('git clone'){
-    git clone https://github.com/ngageoint/geopackage-core-java.git
+    stage ('git clone')
+   git([
+      url: "https://github.com/ngageoint/geopackage-core-java.git",
+      branch: "master"
+      ])
     }
     withEnv(["PATH+MAVEN=${tool 'M3'}/bin"]){
     stage('Archive') {
