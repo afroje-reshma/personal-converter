@@ -1,0 +1,17 @@
+@Library('pipelib@master') _
+node { 
+    
+    stage('Setup') {
+    git([
+      url: "https://github.com/afroje-reshma/personal-converter",
+      branch: "master"
+    ])
+  }
+    
+   stage('Archive') {
+    sh 'mvn install' //example 
+    sh 'go get somepackage' //example
+    sh 'tar czvf mypackage.tar.gz mypackage/ //example
+  }
+}
+
