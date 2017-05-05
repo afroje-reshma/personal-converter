@@ -9,8 +9,10 @@ node {
    // ])
   //}
     
+   withEnv(["PATH+MAVEN=${tool 'M3'}/bin"]){
    stage('Archive') {
-    sh 'mvn install' 
+    sh 'mvn clean install' 
+    }
   }
 }
 
