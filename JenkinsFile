@@ -14,7 +14,7 @@ node {
       url: "https://github.com/ngageoint/geopackage-core-java.git",
       branch: "master"
       ])
-     } 
+     
        withEnv(["PATH+MAVEN=${tool 'M3'}/bin"]){
        sh 'mvn clean install -DskipTests' 
  
