@@ -12,6 +12,9 @@ node {
     stage ('Dependencies'){
    git([
       url: "https://github.com/ngageoint/geopackage-core-java.git",
+      branch: "master"
+      ])
+     } 
        withEnv(["PATH+MAVEN=${tool 'M3'}/bin"]){
     stage('Archive') {
     sh 'mvn clean install -DskipTests' 
@@ -20,8 +23,8 @@ node {
   }
       
       //url: "https://github.com/ngageoint/geopackage-wkb-java.git",
-      branch: "master"
-      ])
+      //branch: "master"
+      //])
        
    git([
       url: "https://github.com/ngageoint/geopackage-java.git",
