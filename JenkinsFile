@@ -17,6 +17,13 @@ node {
       branch: "master"
       ])
     }
+    {
+   git([
+      url: "https://github.com/ngageoint/geopackage-java.git",
+      branch: "master"
+      ])
+    }
+    
     withEnv(["PATH+MAVEN=${tool 'M3'}/bin"]){
     stage('Archive') {
     sh 'mvn clean install' 
