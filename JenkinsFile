@@ -4,20 +4,43 @@ node {
     stage('Setup')
     checkout scm
    
-    
-    stage ('Dependencies-Build'){
-    git([
-      url: "https://github.com/venicegeo/geopackage-core-java.git",
-      //url: "https://github.com/ngageoint/geopackage-core-java.git",
+    stage("Build geopackage") {                                                               
      
-      branch: "master"
-      ])
-     
-       withEnv(["PATH+MAVEN=${tool 'M3'}/bin"]){
-       sh 'mvn clean install' 
-       }
-  
+      git url: "https://github.com/venicegeo/geopackage-java.git"                  
+        
+       withEnv(["PATH+MAVEN=${tool "M3"}/bin"]) {                                 
+          
+        sh "mvn clean install -DskipTests"                                       
       
+       }                                                                          
+    
+  }                                                                              
+    stage("Build geopackage-wkb") {                                                
+     
+      git url: "https://github.com/venicegeo/geopackage-wkb-java.git"              
+        
+       withEnv(["PATH+MAVEN=${tool "M3"}/bin"]) {                                 
+         
+        sh "mvn clean install -DskipTests"                                       
+     
+       }                                                                          
+    
+  }                                                                              
+                                                                                   
+    
+     stage("Build geopackage-core") {                                               
+     
+      git url: "https://github.com/venicegeo/geopackage-core-java.git"             
+       
+       withEnv(["PATH+MAVEN=${tool "M3"}/bin"]) {                                 
+         
+        sh "mvn clean install -DskipTests"                                       
+       
+      }                                                                          
+  
+  }       
+
+    
        
     // stage 'Nexus-Upload'
     // step([$class: 'NexusArtifactUploader',
@@ -32,6 +55,6 @@ node {
  
     
    
-  }
+  
 }
 
