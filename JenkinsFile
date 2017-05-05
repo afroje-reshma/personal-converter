@@ -13,19 +13,11 @@ node {
       ])
      
        withEnv(["PATH+MAVEN=${tool 'M3'}/bin"]){
-       sh 'mvn clean install -DskipTests' 
+       sh 'mvn clean install' 
        }
   
       
-      //url: "https://github.com/ngageoint/geopackage-wkb-java.git",
-      //branch: "master"
-      //])
        
-      // git([
-      // url: "https://github.com/ngageoint/geopackage-java.git",
-     // branch: "master"
-     // ])
-    
     // stage 'Nexus-Upload'
     // step([$class: 'NexusArtifactUploader',
     // artifactId: 'geopackage', classifier: 'artifact',
