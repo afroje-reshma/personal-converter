@@ -35,7 +35,7 @@ node {
        groupId: "mil.nga.geopackage",
        nexusUrl: "52.34.149.187:8081/nexus", 
        nexusVersion: "NEXUS2", protocol: "http",
-       repository: "snapshot", type: 'jar', version: "1.2.2"]) 
+       repository: "snapshot", type: 'jar', version: "1.2.2-SF-SNAPSHOT"]) 
      
  
     
