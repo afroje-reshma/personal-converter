@@ -14,9 +14,7 @@ node {
      
        withEnv(["PATH+MAVEN=${tool 'M3'}/bin"]){
        sh 'mvn clean install -DskipTests' 
-       sh 'mvn clean package'
- 
-    }
+       }
   
       
       //url: "https://github.com/ngageoint/geopackage-wkb-java.git",
@@ -28,7 +26,17 @@ node {
      // branch: "master"
      // ])
     
-    
+    // stage 'Nexus-Upload'
+    // step([$class: 'NexusArtifactUploader',
+    // artifactId: 'geopackage', classifier: 'artifact',
+    // credentialsId: 'b9bc9cc5-871e-4738-88f3-9c3e5525a096',
+    // file: '/var/lib/jenkins/workspace/geopackage-jave/target/*.jar',
+   // groupId: 'mil.nga.geopackage',
+    // nexusUrl: '35.163.156.3:8081/nexus', 
+    // nexusVersion: 'NEXUS2', protocol: 'http',
+    // repository: 'snapshot', type: 'jar', version: '1.2.2']) 
+     
+ 
     
    
   }
