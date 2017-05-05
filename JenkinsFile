@@ -9,7 +9,7 @@ node {
    // ])
   //}
     
-    stage ('git clone')
+    stage ('git clone'){
    git([
       url: "https://github.com/ngageoint/geopackage-core-java.git",
       branch: "master"
