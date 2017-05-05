@@ -14,7 +14,7 @@ node {
     stage("Build geopackage-wkb") {                                                
       git url: "https://github.com/venicegeo/geopackage-wkb-java.git"              
          withEnv(["PATH+MAVEN=${tool "M3"}/bin"]) {                                 
-          sh "mvn clean package"
+          sh "mvn clean install"
      }                                                                          
    }                                                                              
                                                                                    
