@@ -8,6 +8,7 @@ node {
       git url: "https://github.com/ngageoint/geopackage-java.git"                  
          withEnv(["PATH+MAVEN=${tool "M3"}/bin"]) {                                 
           sh "mvn clean install -DskipTests" 
+          sh "pwd"
       }                                                                          
     }                                                                              
     
