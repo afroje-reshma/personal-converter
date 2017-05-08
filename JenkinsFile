@@ -1,6 +1,11 @@
 //@Library('pipelib@master') _
 node { 
     
+    stage("Clean") {
+    deleteDir()
+    sh "pwd"
+    sh "ls -al"
+  }
     stage("Setup")
     checkout scm
    
