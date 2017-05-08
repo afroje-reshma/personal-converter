@@ -8,30 +8,58 @@ node {
   }
     stage("Setup")
     checkout scm
-   
-    stage("Build geopackage") {                                                               
-      git url: "https://github.com/venicegeo/geopackage-java.git"                  
-         withEnv(["PATH+MAVEN=${tool "M3"}/bin"]) {                                 
-          sh "mvn clean install -DskipTests" 
-          sh "pwd"
-      }                                                                          
-    }                                                                              
     
-    stage("Build geopackage-wkb") {                                                
-      git url: "https://github.com/venicegeo/geopackage-wkb-java.git"              
-         withEnv(["PATH+MAVEN=${tool "M3"}/bin"]) {                                 
-          sh "mvn clean install -DskipTests"
+    
+    stage("Setup") {
+    sh "mkdir -p source-repos"
+    dir("./source-repos") {
+      sh "mkdir -p java"
+      sh "mkdir -p wkb"
+      sh "mkdir -p core-java"
+      sh "mkdir bf-converter"
+    }
+  }
+
+  stage("Build geopackage-wkb") {
+    git url: "https://github.com/venicegeo/geopackage-wkb-java.git"
+    withEnv(["PATH+MAVEN=${tool "M3"}/bin"]) {
+      sh "mvn clean package -U -DskipTests"
+      mavenPush {
+        mavenArtifact = 'target/wkb-*.jar'
+        app = 'geopackage-wkb-java'
+        mavenProject = 'beachfront'
+        packaging = '.jar'
+      }
+    }
+  }
+    
+    
+    
+    
+   
+   // stage("Build geopackage") {                                                               
+    //  git url: "https://github.com/venicegeo/geopackage-java.git"                  
+    //     withEnv(["PATH+MAVEN=${tool "M3"}/bin"]) {                                 
+      //    sh "mvn clean install -DskipTests" 
           sh "pwd"
-     }                                                                          
-   }                                                                              
+     // }                                                                          
+ //   }                                                                              
+    
+  //  stage("Build geopackage-wkb") {                                                
+      //git url: "https://github.com/venicegeo/geopackage-wkb-java.git"              
+         //withEnv(["PATH+MAVEN=${tool "M3"}/bin"]) {                                 
+          //sh "mvn clean install -DskipTests"
+          //sh "pwd"
+    // }                                                                          
+  // }                                                                              
                                                                                    
-    stage("Build geopackage-core") {                                               
-      git url: "https://github.com/venicegeo/geopackage-core-java.git"             
-        withEnv(["PATH+MAVEN=${tool "M3"}/bin"]) {                                 
-         sh "mvn clean install" 
-         sh "pwd"
-      }                                                                          
-   }       
+   // stage("Build geopackage-core") {                                               
+    //  git url: "https://github.com/venicegeo/geopackage-core-java.git"             
+      //  withEnv(["PATH+MAVEN=${tool "M3"}/bin"]) {                                 
+      //   sh "mvn clean install" 
+      //   sh "pwd"
+     // }                                                                          
+  // }       
 
     
        
