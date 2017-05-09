@@ -53,13 +53,13 @@ node {
     // }                                                                          
   // }                                                                              
                                                                                    
-   // stage("Build geopackage-core") {                                               
-    //  git url: "https://github.com/venicegeo/geopackage-core-java.git"             
-      //  withEnv(["PATH+MAVEN=${tool "M3"}/bin"]) {                                 
-      //   sh "mvn clean install" 
-      //   sh "pwd"
-     // }                                                                          
-  // }       
+    stage("Build geopackage-core") {                                               
+      git url: "https://github.com/venicegeo/geopackage-core-java.git"             
+        withEnv(["PATH+MAVEN=${tool "M3"}/bin"]) {                                 
+         sh "mvn clean package" 
+         sh "pwd"
+      }                                                                          
+   }       
 
     
        
