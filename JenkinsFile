@@ -24,7 +24,7 @@ node {
     git url: "https://github.com/venicegeo/geopackage-wkb-java.git"
     withEnv(["PATH+MAVEN=${tool "M3"}/bin"]) {
       sh "mvn clean package -U -DskipTests"
-      mavenPush {
+      mvnPush {
         mavenArtifact = 'target/wkb-*.jar'
         app = 'geopackage-wkb-java'
         mavenProject = 'beachfront'
