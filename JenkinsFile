@@ -29,7 +29,7 @@ node {
      /   app = 'geopackage-wkb-java'
      /   mavenProject = 'beachfront'
      /   packaging = '.jar'
-      }
+    /  }
     }
   }
     
