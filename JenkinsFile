@@ -26,12 +26,12 @@ node {
       withEnv(["PATH+MAVEN=${tool "M3"}/bin"]) {
         sh "mvn clean package -U -DskipTests"
         sh "ls -al target/"
-        mavenPush {
-          mavenArtifact = 'target/wkb-*.jar'
-          app = 'geopackage-wkb-java'
-          mavenProject = 'beachfront'
-          packaging = '.jar'
-          }
+     //   mavenPush {
+    //      mavenArtifact = 'target/wkb-*.jar'
+    //      app = 'geopackage-wkb-java'
+    //      mavenProject = 'beachfront'
+    //      packaging = '.jar'
+     //     }
        } 
     }
   }
