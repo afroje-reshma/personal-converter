@@ -74,7 +74,7 @@ node {
       groupId: "org.venice.beachfront",
        nexusUrl: "52.34.149.187:8081/nexus", 
        nexusVersion: "NEXUS2", protocol: "http",
-     repository: "SNAPSHOT", type: "jar", version: "1.1.0"]) 
+     repository: "SNAPSHOT", type: "jar", version: "1.1.0-SF-SNAPSHOT"]) 
      
  
     
