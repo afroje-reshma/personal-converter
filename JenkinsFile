@@ -70,7 +70,7 @@ node {
      step([$class: "NexusArtifactUploader",
       artifactId: "wkb", classifier: "artifact",
      credentialsId: "b9bc9cc5-871e-4738-88f3-9c3e5525a096",
-      file: "/var/lib/jenkins/workspace/converter/source-repos/wkb/target/*jar",
+      file: "/var/lib/jenkins/workspace/converter/source-repos/wkb/target/wkb*.jar",
       groupId: "org.venice.beachfront",
        nexusUrl: "52.34.149.187:8081/nexus", 
        nexusVersion: "NEXUS2", protocol: "http",
