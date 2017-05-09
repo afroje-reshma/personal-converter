@@ -20,16 +20,19 @@ node {
     }
   }
 
-  stage("Build geopackage-wkb") {
-    git url: "https://github.com/venicegeo/geopackage-wkb-java.git"
-    withEnv(["PATH+MAVEN=${tool "M3"}/bin"]) {
-      sh "mvn clean package -U -DskipTests"
-    // mavenPush {
-     //   mavenArtifact = 'target/wkb-*.jar'
-     //   app = 'geopackage-wkb-java'
-     //   mavenProject = 'beachfront'
-     //   packaging = '.jar'
-    //  }
+  stage("Build/Push geopackage-wkb") {
+    dir("./source-repos/wkb") {
+      git url: "https://github.com/venicegeo/geopackage-wkb-java.git"
+      withEnv(["PATH+MAVEN=${tool "M3"}/bin"]) {
+        sh "mvn clean package -U -DskipTests"
+        sh "ls -al target/"
+        mavenPush {
+          mavenArtifact = 'target/wkb-*.jar'
+          app = 'geopackage-wkb-java'
+          mavenProject = 'beachfront'
+          packaging = '.jar'
+          }
+       } 
     }
   }
     
@@ -53,25 +56,25 @@ node {
     // }                                                                          
   // }                                                                              
                                                                                    
-    stage("Build geopackage-core") {                                               
-      git url: "https://github.com/venicegeo/geopackage-core-java.git"             
-        withEnv(["PATH+MAVEN=${tool "M3"}/bin"]) {                                 
-         sh "mvn clean package" 
-         sh "pwd"
-      }                                                                          
-   }       
+  //  stage("Build geopackage-core") {                                               
+   //   git url: "https://github.com/venicegeo/geopackage-core-java.git"             
+ //       withEnv(["PATH+MAVEN=${tool "M3"}/bin"]) {                                 
+   //      sh "mvn clean package" 
+    //     sh "pwd"
+  //    }                                                                          
+ //  }       
 
     
        
-      stage ("Nexus-Upload")
-      step([$class: "NexusArtifactUploader",
-      artifactId: "geopackage-core", classifier: "artifact",
-      credentialsId: "b9bc9cc5-871e-4738-88f3-9c3e5525a096",
-      file: "/var/lib/jenkins/workspace/converter/target/geopackage-core-1.2.2-SF-SNAPSHOT-*.jar",
-       groupId: "org.venice.beachfront",
-       nexusUrl: "52.34.149.187:8081/nexus", 
-       nexusVersion: "NEXUS2", protocol: "http",
-      repository: "SNAPSHOT", type: "jar", version: "1.2.2"]) 
+ //     stage ("Nexus-Upload")
+ //     step([$class: "NexusArtifactUploader",
+  //    artifactId: "geopackage-core", classifier: "artifact",
+  //    credentialsId: "b9bc9cc5-871e-4738-88f3-9c3e5525a096",
+  //    file: "/var/lib/jenkins/workspace/converter/target/geopackage-core-1.2.2-SF-SNAPSHOT-*.jar",
+  //     groupId: "org.venice.beachfront",
+  //     nexusUrl: "52.34.149.187:8081/nexus", 
+  //     nexusVersion: "NEXUS2", protocol: "http",
+   //   repository: "SNAPSHOT", type: "jar", version: "1.2.2"]) 
      
  
     
